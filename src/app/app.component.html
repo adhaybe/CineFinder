@@ -1,0 +1,20 @@
+<main class="container main-content">
+  <section class="search-container">
+    <app-search></app-search>
+  </section>
+  <section class="sidebar-container">
+    <app-sidebar></app-sidebar>
+  </section>
+
+  <section class="recommended-container">
+    <ng-container *ngIf="!dataService.isSearching">
+      <router-outlet></router-outlet>
+    </ng-container>
+  </section>
+
+  <section class="trending-container">
+    <ng-container *ngIf="dataService.isSearching">
+      <app-search-result></app-search-result>
+    </ng-container>
+  </section>
+</main>

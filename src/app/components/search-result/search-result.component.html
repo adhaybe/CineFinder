@@ -1,0 +1,21 @@
+<!-- Conditional title based on search -->
+<h2 *ngIf="dataService.isSearching; else recommendedTitle">Found {{ filteredData.length }} for '{{ dataService.lastSearchedTerm }}'</h2>
+<ng-template #recommendedTitle><h2>Recommended for you</h2></ng-template>
+
+<div class="media-grid">
+  <div *ngFor="let content of filteredData" class="media-card">
+    <span class="media-image">
+      <img [src]="content.thumbnail?.regular?.medium" alt="{{ content.title }}">
+    </span>
+    <button class="btn-bookmark" [class.bookmarked]="content.isBookmarked" (click)="addToBookmarks(content)">
+      <img src="../../../assets/icon-bookmark-empty.svg" alt="bookmark">
+    </button>
+    <section class="caption">
+      <span>{{ content.year }}</span>
+      <span>{{ content.category }}</span>
+      <span><img src="{{ icon }}" alt=""></span>
+      <span>{{ content.rating }}</span>
+    </section>
+    <span class="title-movie">{{ content.title }}</span>
+  </div>
+</div>
